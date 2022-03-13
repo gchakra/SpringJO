@@ -46,7 +46,7 @@ import microsoft.sql.DateTimeOffset;
 public class DemogopalcSpringBootApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(DemogopalcSpringBootApplication.class, args);
+		SpringApplication.run(DemogopalcSpringBootApplication.class, args);
 		try {
 			connectDB();
 		} catch (ClassNotFoundException | SQLException e) {
