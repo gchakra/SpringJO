@@ -46,7 +46,7 @@ import microsoft.sql.DateTimeOffset;
 public class DemogopalcSpringBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemogopalcSpringBootApplication.class, args);
+		//SpringApplication.run(DemogopalcSpringBootApplication.class, args);
 		try {
 			connectDB();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -59,14 +59,14 @@ public class DemogopalcSpringBootApplication {
 	
 	static void connectDB() throws ClassNotFoundException, SQLException {
 		
-		String conUrl="jdbc:sqlserver://localhost:49713;databaseName=R_Db;ntegratedSecurity=true;";
-
 		String USER="gopalc";
 		String PASSWD="Secret1!";
 		
-	    Class.forName("com.microsoft.sqlserver");
+	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
+	    
+	    String connectionUrl = "jdbc:sqlserver://localhost:49713;database=R_Db;integratedSecurity=false;";
+	    Connection con = DriverManager.getConnection(connectionUrl,USER,PASSWD);  
 		
-        Connection con = DriverManager.getConnection(conUrl,USER,PASSWD);
         Statement stmt = con.createStatement();
 	  
 		String sql = "Select * from Student";
@@ -75,6 +75,8 @@ public class DemogopalcSpringBootApplication {
 		//6. Process the result set
 		while (rs.next()) {
 			//proces individual rows matching criteria
+			String studentName = rs.getString("student_name");
+			int studentMarks = rs.getInt("student_marks");
 		}
 	}
 	
